@@ -21,6 +21,8 @@ import { Drawer, List, ListItem, Typography, ListItemButton, Stack, IconButton, 
 
 import Image from 'next/image'
 import icon from '../../../public/ImgStudioLogoReversedMini.svg'
+import custLogo from '../../../public/Mars_Incorporated_2019_logo.svg'
+import custLetter from '../../../public/MarsLetter.png'
 import { pages } from '../../routes'
 
 import theme from '../../theme'
@@ -77,7 +79,12 @@ export default function SideNav() {
           onClick={() => setOpen(!open)}
           sx={{
             pt: 6,
+            px: 1,
             cursor: 'pointer',
+            alignItems: 'center', // Center items horizontally
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 5,
           }}
         >
           <Image
@@ -87,14 +94,43 @@ export default function SideNav() {
             alt="ImgStudio"
             style={{
               transform: 'rotate(-90deg)',
+              alignContent: "center",
+              paddingTop: 15
             }}
+          />
+          <Image
+            priority
+            src={custLetter}
+            width={50}
+            alt="MarsLetter"
           />
         </Box>
       )}
       {open && (
         <List dense>
-          <ListItem onClick={() => setOpen(!open)} sx={{ px: 2.5, pt: 2, cursor: 'pointer' }}>
-            <Image priority src={icon} width={200} alt="ImgStudio" />
+          <ListItem
+            onClick={() => setOpen(!open)}
+            sx={{
+              pt: 2,
+              pb: 2,
+              cursor: 'pointer',
+              alignItems: 'center', // Center items horizontally
+              display: 'flex',
+              flexDirection: 'column',
+              gap: .01,
+            }}
+          >
+            <Image priority src={icon} width={200} alt="ImgStudio" style={{ alignContent: "center" }}/>
+            <Image priority
+              src={custLogo}
+              width={200}
+              alt="By Mars Incorporated - https://gateway.mars.com/m/605da8f720ce4edb/original/Cocoa-Forest-Press-Release-March-21.pdf, Public Domain, https://commons.wikimedia.org/w/index.php?curid=82845584"
+              style={{
+                backgroundColor: 'white',
+                marginTop: -20,
+              }}
+            />
+
           </ListItem>
 
           {Object.values(pages).map(({ name, description, href, status }) => (

@@ -13,6 +13,12 @@
 // limitations under the License.
 
 export const pages = {
+  Analyze: {
+    name: 'Analyze',
+    description: 'Summarize your references to add generation context',
+    href: '/analyze',
+    status: 'true',
+  },
   Generate: {
     name: 'Generate',
     description: 'Create new content from scratch or with references',

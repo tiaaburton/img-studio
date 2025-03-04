@@ -18,6 +18,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Image from 'next/image'
 import icon from '../public/ImgStudioLogo.svg'
+import custLogo from '../public/Mars_Incorporated_2019_logo.svg'
 import GoogleSignInButton from './ui/ux-components/GoogleSignInButton'
 import { pages } from './routes'
 import { useRouter } from 'next/navigation'
@@ -32,6 +33,7 @@ export default function Page() {
     <main>
       <Box justifyContent="left" minHeight="100vh" pl={15} pt={10}>
         <Image priority src={icon} width={800} alt="ImgStudio" />
+        <Image priority src={custLogo} width={800} alt="By Mars Incorporated - https://gateway.mars.com/m/605da8f720ce4edb/original/Cocoa-Forest-Press-Release-March-21.pdf, Public Domain, https://commons.wikimedia.org/w/index.php?curid=82845584" />
         <Box sx={{ pl: 2 }}>
           <GoogleSignInButton onClick={handleClick} />
         </Box>
