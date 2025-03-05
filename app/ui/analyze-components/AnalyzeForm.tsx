@@ -14,32 +14,58 @@
 
 'use client'
 
-import * as React from 'react';
-import { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Alert, Stack, CircularProgress } from '@mui/material';
 import AnalyzeDocumentDropzone from './AnalyzeDocumentDropzone';
+import AnalyzeResult from './AnalyzeResult';
+import theme from '../../theme';
 
+const { palette } = theme;
 
-const Analyze: React.FC = () => {
-  const [analysis, setAnalysis] = useState<string>("");
+const AnalyzeForm: React.FC = () => {
+    const [analysisResult, setAnalysisResult] = useState<string>('');
+    const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
-  const handleFileAnalyzed = (analysisResult: string) => {
-    setAnalysis(analysisResult);
-  };
+    const handleFileAnalyzed = (analysis: string) => {
+        setAnalysisResult(analysis);
+        setError('');
+    };
 
-  return (
-    <Box>
-      <Typography variant="h2">Analyze</Typography>
-      <AnalyzeDocumentDropzone onFileAnalyzed={handleFileAnalyzed} />
+    const handleError = (message: string) => {
+        setError(message);
+        setAnalysisResult('');
+    };
 
-      {analysis && (
-        <Box mt={2}>
-          <Typography variant="h6">Extracted Information:</Typography>
-          <pre>{analysis}</pre>
+    return (
+        <Box sx={{ p: 3 }}>
+            <Typography variant="h1" color={palette.text.secondary} sx={{ fontSize: '1.8rem', mb: 3 }}>
+                Analyze Document
+            </Typography>
+
+            {error && (
+
+                    {error}
+
+            )}
+
+            <AnalyzeDocumentDropzone
+                onFileAnalyzed={handleFileAnalyzed}
+                onError={handleError}
+                setLoading={setLoading}
+            />
+
+            {loading && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                    <CircularProgress />
+                </Box>
+            )}
+
+            {analysisResult && !loading && (
+                <AnalyzeResult analysis={analysisResult} />
+            )}
         </Box>
-      )}
-    </Box>
-  );
+    );
 };
 
-export default Analyze;
+export default AnalyzeForm;
