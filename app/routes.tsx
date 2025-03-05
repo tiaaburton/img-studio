@@ -15,7 +15,7 @@
 export const pages = {
   Analyze: {
     name: 'Analyze',
-    description: 'Summarize your references to add generation context',
+    description: 'Upload and summarize your references for model context',
     href: '/analyze',
     status: 'true',
   },

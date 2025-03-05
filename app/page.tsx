@@ -26,7 +26,7 @@ import { useRouter } from 'next/navigation'
 export default function Page() {
   const router = useRouter()
   const handleClick = () => {
-    router.push(pages.Generate.href)
+    router.push(pages.Analyze.href)
   }
 
   return (
