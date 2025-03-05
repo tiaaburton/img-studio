@@ -17,6 +17,8 @@
 import * as React from 'react'
 import Grid from '@mui/material/Grid2'
 import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider';
+
 import { useCallback, useEffect, useState } from 'react'
 import { ImageI } from '../../api/generate-utils'
 import OutputImagesDisplay from '../../ui/transverse-components/ImagenOutputImagesDisplay'
@@ -27,6 +29,7 @@ import theme from '../../theme'
 import EditForm from '@/app/ui/edit-components/EditForm'
 import { redirect } from 'next/navigation'
 const { palette } = theme
+import Analyze from '../../ui/analyze-components/AnalyzeForm';
 
 export default function Page() {
   const [editedImagesInGCS, setEditedImagesInGCS] = useState<ImageI[]>([])
@@ -73,13 +76,7 @@ export default function Page() {
       <Box p={5} sx={{ maxHeight: '100vh' }}>
         <Grid wrap="nowrap" container spacing={6} direction="row" columns={2}>
           <Grid size={1.1} flex={0} sx={{ maxWidth: 700, minWidth: 610 }}>
-            <EditForm
-              isLoading={isEditLoading}
-              onRequestSent={handleRequestSent}
-              onImageGeneration={handleImageGeneration}
-              onNewErrorMsg={handleNewErrorMsg}
-              errorMsg={editErrorMsg}
-            />
+            <Analyze />
           </Grid>
           <Grid size={0.9} flex={1} sx={{ pt: 11, maxWidth: 850, minWidth: 400 }}>
             <OutputImagesDisplay isLoading={isEditLoading} generatedImagesInGCS={editedImagesInGCS} />
