@@ -43,12 +43,6 @@ const AnalyzeForm: React.FC = () => {
                 Analyze Document
             </Typography>
 
-            {error && (
-
-                    {error}
-
-            )}
-
             <AnalyzeDocumentDropzone
                 onFileAnalyzed={handleFileAnalyzed}
                 onError={handleError}
